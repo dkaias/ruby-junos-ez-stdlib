@@ -60,7 +60,7 @@ module Junos::Ez::Facts
     
     def read!
       @known.clear
-      fact_readers = self.methods.grep /^fact_read_/
+      fact_readers = self.methods.sort.reverse.grep /^fact_read_/
       fact_readers.each do |getter| 
         getter =~ /^fact_read_(\w+)/
         fact = $1.to_sym
